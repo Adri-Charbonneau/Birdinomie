@@ -1,4 +1,4 @@
-# Téléchargement et extraction des lignes du journal
+﻿# Téléchargement et extraction des lignes du journal
 $diary = Invoke-WebRequest -Method GET -Uri "https://www.worldbirdnames.org/new/updates/update-diary/"
 $paragraphs = $diary.ParsedHtml.getElementsByTagName('p')
 $elements = $paragraphs | Foreach-Object { $_.innerHtml }
