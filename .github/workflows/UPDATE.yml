@@ -13,9 +13,11 @@ jobs:
   UPDATE-DIARY:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@main
 
       - name: Update diary
+        shell: powershell
         run:  |
+          $PSVersionTable
           echo "Mise à jour du journal de l'IOC"
           ./SCRIPTS/DIARY.ps1
