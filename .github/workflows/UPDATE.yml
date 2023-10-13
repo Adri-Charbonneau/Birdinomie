@@ -18,6 +18,5 @@ jobs:
       - name: Update diary
         shell: powershell
         run:  |
-          $PSVersionTable
           echo "Mise à jour du journal de l'IOC"
           ./SCRIPTS/DIARY.ps1

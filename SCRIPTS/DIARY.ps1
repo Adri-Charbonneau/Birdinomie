@@ -28,7 +28,7 @@ if ($diff -eq $NULL) {
     # Envoi d'une notification Télégram
     $tmtext = "<b>Journal de l'IOC</b> :
 $text
-➔ <a href=`"https://www.worldbirdnames.org/new/updates/update-diary/`">IOC-Diary</a>"
+<a href=`"https://www.worldbirdnames.org/new/updates/update-diary/`">IOC-Diary</a>"
     $tmtoken = "$env:TELEGRAM"
     $tmchatid = "$env:CHAT_ID"
     Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&text=$tmtext"
