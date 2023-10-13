@@ -31,7 +31,7 @@ $text
 <a href=`"https://www.worldbirdnames.org/new/updates/update-diary/`">IOC-Diary</a>"
     $tmtoken = "$env:TELEGRAM"
     $tmchatid = "$env:CHAT_ID"
-    Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&text=$tmtext"
+    Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&parse_mode=HTML&text=$tmtext"
 }
 
 # git and create tag
