@@ -1,0 +1,21 @@
+name: UPDATE-DIARY
+
+on:
+  schedule:
+    - cron:  '0 3 * * *''
+  workflow_dispatch:
+
+env:
+    TELEGRAM: ${{ secrets.TELEGRAM }}
+    CHAT_ID: ${{ secrets.CHAT_ID }}
+
+jobs:
+  UPDATE-DIARY:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Update diary
+        run:  |
+          echo "Mise à jour du journal de l'IOC"
+          ./SCRIPTS/DIARY.ps1
