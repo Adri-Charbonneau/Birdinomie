@@ -9,10 +9,10 @@ $Source = $Source -replace '<br>\n<\/(.*?)>' , '</$1>'
 $Source = $Source -replace '$' , '<br>'
 
 # Comparaison avec l'ancienne version
-$diff = (compare-object $Source $(Get-content "IOC.html") | Where-Object SideIndicator -eq '<=').InputObject
+$diff = (compare-object $Source $(Get-content "./SOURCES/DIARY.html") | Where-Object SideIndicator -eq '<=').InputObject
 
 # Enregistrement de la nouvelle version
-$Source | Out-File "IOC.html"
+$Source | Out-File "./SOURCES/DIARY.html"
 
 if ($diff -eq $NULL) {
     "Pas de mise à jour"
@@ -28,7 +28,7 @@ if ($diff -eq $NULL) {
     # Envoi d'une notification Télégram
     $tmtext = "<b>Journal de l'IOC</b> :
 $text
-<a href=`"https://www.worldbirdnames.org/new/updates/update-diary/`">IOC-Diary</a>"
+<a href=`"https://www.worldbirdnames.org/new/updates/update-diary/`">IOC diary</a>"
     $tmtoken = "$env:TELEGRAM"
     $tmchatid = "$env:CHAT_ID"
     Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&parse_mode=HTML&text=$tmtext"
