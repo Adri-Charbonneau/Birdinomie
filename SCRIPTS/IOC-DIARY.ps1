@@ -9,10 +9,10 @@ $Source = $Source -replace '<br>\n<\/(.*?)>' , '</$1>'
 $Source = $Source -replace '$' , '<br>'
 
 # Comparaison avec l'ancienne version
-$diff = (compare-object $Source $(Get-content "./SOURCES/DIARY.html") | Where-Object SideIndicator -eq '<=').InputObject
+$diff = (compare-object $Source $(Get-content "./SOURCES/IOC-DIARY.html") | Where-Object SideIndicator -eq '<=').InputObject
 
 # Enregistrement de la nouvelle version
-$Source | Out-File "./SOURCES/DIARY.html"
+$Source | Out-File "./SOURCES/IOC-DIARY.html"
 
 if ($diff -eq $NULL) {
     "Pas de mise à jour"
@@ -38,5 +38,5 @@ $text
 git config user.name 'github-actions[bot]'
 git config user.email 'github-actions[bot]@users.noreply.github.com'
 git add .
-git commit -m "[Bot] Update diary"
+git commit -m "[Bot] Update IOC-diary"
 git push -f

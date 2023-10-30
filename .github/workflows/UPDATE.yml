@@ -18,4 +18,5 @@ jobs:
       - name: Update diary
         shell: powershell
         run:  |
-          ./SCRIPTS/DIARY.ps1
+          ./SCRIPTS/IOC-DIARY.ps1
+          ./SCRIPTS/CLEMENTS.ps1
