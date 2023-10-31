@@ -11,6 +11,12 @@ if ( $old -eq $element ) {
 
     # Enregistrement de la nouvelle version
     $element | Out-File "./SOURCES/CLEMENTS.txt"
+
+        # Envoi d'une notification Télégram
+    $tmtext = "<b>Clements Checklist</b> : <a href=`"https://www.birds.cornell.edu/clementschecklist/introduction/updateindex/$element`">$element</a>"
+    $tmtoken = "$env:TELEGRAM"
+    $tmchatid = "$env:CHAT_ID"
+    Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&parse_mode=HTML&text=$tmtext"
 }
 
 # git and create tag

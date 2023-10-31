@@ -1,4 +1,4 @@
-name: UPDATE-DIARY
+name: UPDATE
 
 on:
   schedule:
@@ -10,12 +10,12 @@ env:
     CHAT_ID: ${{ secrets.CHAT_ID }}
 
 jobs:
-  UPDATE-DIARY:
+  UPDATE:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@main
 
-      - name: Update diary
+      - name: Update
         shell: powershell
         run:  |
           ./SCRIPTS/IOC-DIARY.ps1
