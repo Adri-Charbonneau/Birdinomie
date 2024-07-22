@@ -37,8 +37,7 @@ if ($diff -eq $NULL) {
 		$tmtoken = "$env:TELEGRAM"
 		$tmchatid = "$env:CHAT_ID"
 	}
-}
-Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&parse_mode=HTML&text=$tmtext"
+	Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&parse_mode=HTML&text=$tmtext"
 }
 
 # git and create tag
