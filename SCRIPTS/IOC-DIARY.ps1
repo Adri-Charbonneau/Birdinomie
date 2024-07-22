@@ -1,4 +1,4 @@
-﻿# Téléchargement et extraction des lignes du journal
+# Téléchargement et extraction des lignes du journal
 $diary = Invoke-WebRequest -Method GET -Uri "https://www.worldbirdnames.org/new/updates/update-diary/"
 $paragraphs = $diary.ParsedHtml.getElementsByTagName('p')
 $elements = $paragraphs | Foreach-Object { $_.innerHtml }
@@ -16,22 +16,29 @@ $Source | Out-File "./SOURCES/IOC-DIARY.html"
 
 if ($diff -eq $NULL) {
     "Pas de mise à jour"
-} else {
+	} else {
     "Mise à jour"
-
+	
     $text = "`n"
     Foreach($d in $diff) { 
         $d = $d -replace "<br>",""
         $text += "• $d `n"
-    }
-
-    # Envoi d'une notification Télégram
-    $tmtext = "<b>Journal de l'IOC</b> :
-$text
-<a href=`"https://www.worldbirdnames.org/new/updates/update-diary/`">IOC diary</a>"
-    $tmtoken = "$env:TELEGRAM"
-    $tmchatid = "$env:CHAT_ID"
-    Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&parse_mode=HTML&text=$tmtext"
+	}
+	
+	if($text.Length -gt 4000){
+		$text_cut = $text -split "`n"
+		$text = $text_cut[1]
+		}else{
+		
+		# Envoi d'une notification Télégram
+		$tmtext = "<b>Journal de l'IOC</b> :
+		$text
+		<a href=`"https://www.worldbirdnames.org/new/updates/update-diary/`">IOC diary</a>"
+		$tmtoken = "$env:TELEGRAM"
+		$tmchatid = "$env:CHAT_ID"
+	}
+}
+Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&parse_mode=HTML&text=$tmtext"
 }
 
 # git and create tag
