@@ -25,18 +25,16 @@ if ($diff -eq $NULL) {
         $text += "• $d `n"
 	}
 	
-	if($text.Length -gt 4000){
+	if ($text.Length -gt 4000) {
 		$text_cut = $text -split "`n"
 		$text = $text_cut[1]
-		}else{
-		
-		# Envoi d'une notification Télégram
-		$tmtext = "<b>Journal de l'IOC</b> :
-		$text
-		<a href=`"https://www.worldbirdnames.org/new/updates/update-diary/`">IOC diary</a>"
-		$tmtoken = "$env:TELEGRAM"
-		$tmchatid = "$env:CHAT_ID"
 	}
+ 	# Envoi d'une notification Télégram
+	$tmtext = "<b>Journal de l'IOC</b> :
+	$text
+	<a href=`"https://www.worldbirdnames.org/new/updates/update-diary/`">IOC diary</a>"
+	$tmtoken = "$env:TELEGRAM"
+	$tmchatid = "$env:CHAT_ID"
 	Invoke-RestMethod -Uri "https://api.telegram.org/bot$tmtoken/sendMessage?chat_id=$tmchatid&parse_mode=HTML&text=$tmtext"
 }
 
