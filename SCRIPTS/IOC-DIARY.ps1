@@ -22,7 +22,7 @@ if ($diff -eq $NULL) {
     $text = "`n"
     Foreach($d in $diff) { 
         $d = $d -replace "<br>",""
-        $text += "• $d `n"
+        $text += "- $d `n"
 	}
 	
 	if ($text.Length -gt 4000) {
